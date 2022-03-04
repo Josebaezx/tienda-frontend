@@ -9,17 +9,15 @@ import { ProductoService } from './producto.service';
 })
 export class ProductoComponent implements OnInit {
   productos: Producto[]= [];
-
+  body?: Producto;
+  file?: File;
   constructor(private productoservice: ProductoService) { }
 
   ngOnInit(): void {
     this.cargarProductos();
     console.log(this.productos);
   }
-
-
   
-
   cargarProductos(): void{
     this.productoservice.searchAll().subscribe(
       data => {

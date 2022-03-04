@@ -2,9 +2,9 @@ export interface Producto {
     id?: number;
     codigo: string;
     color: string;
-    fechaCreacion: Date;
+    fechaCreacion?: Date;
     marca: string;
-    precio: string;
+    precio: number;
     tipo: string;
-    imagen: string;
+    imagen?: string;
 }
