@@ -10,7 +10,7 @@ const routes: Routes = [
     children: [
       {path: 'adviser' , component: AdviserComponent},
       {path: 'bienvenido', component: ProductoComponent},
-      {path: 'guardar', component: GuardarComponent}
+      {path: 'agregar', component: GuardarComponent}
   ]},
 ];
 

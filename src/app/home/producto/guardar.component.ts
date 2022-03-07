@@ -4,8 +4,6 @@ import { ProductoService } from './producto.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
-
 @Component({
   selector: 'app-guardar',
   templateUrl: './guardar.component.html',
@@ -29,19 +27,18 @@ export class GuardarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  enviarDatos(): void{
+  guardarDatos(): void{
+    this.enviarImagen();
     const producto = new ProductoDto(this.codigo,this.color,this.marca,this.precio,this.tipo,this.imagen);
     this.productoservice.saveProduct(producto).subscribe(
       () => {
         console.log('Producto enviado');
-        //this.router.navigate(['']);
+        this.router.navigate(['']);
       },
       error => {
         console.log(error)
       }
     );
-
-    this.enviarImagen();
   }
 
   capturarFile(event: any): any {
@@ -86,7 +83,7 @@ export class GuardarComponent implements OnInit {
       this.productoservice.saveFile(formularioDeDatos).subscribe(
         () => {
           console.log('Imagen guardada');
-          this.router.navigate(['']);
+          //this.router.navigate(['']);
         },
         error => {
           console.log(error)
