@@ -3,7 +3,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Producto } from './producto.model';
 import { ProductoService } from './producto.service';
-import { ProductoDto } from './productoDto';
 
 @Component({
   selector: 'app-editar',
@@ -13,10 +12,9 @@ import { ProductoDto } from './productoDto';
 export class EditarComponent implements OnInit {
 
   producto!: Producto;
-  produc!: ProductoDto;
   archivos: any = [];
   previsualizacion?: string;
-  
+
   constructor(
     private productoservice: ProductoService,
     private activateRoute: ActivatedRoute,
@@ -36,7 +34,10 @@ export class EditarComponent implements OnInit {
   }
   
   editarDatos(){
-    this.enviarImagen();
+    if(this.previsualizacion != null){
+      this.enviarImagen();
+    }
+    
     const id= this.activateRoute.snapshot.params['id'];
     this.productoservice.update(id, this.producto).subscribe(
       data => {
