@@ -14,6 +14,7 @@ export class EditarComponent implements OnInit {
   producto!: Producto;
   archivos: any = [];
   previsualizacion?: string;
+  MAXIMO_TAMANIO_BYTES = 1000000
 
   constructor(
     private productoservice: ProductoService,
@@ -53,13 +54,18 @@ export class EditarComponent implements OnInit {
   
   capturarFile(event: any): any {
     const archivoCapturado = event.target.files[0];
-    this.extraerBase64(archivoCapturado).then((imagen: any ) => {
-      this.previsualizacion = imagen.base;
-      this.producto.imagen= imagen.blob.name;
-      console.log(imagen);
-    })
-    this.archivos.push(archivoCapturado);
-    //console.log(event.target.files)
+    if(archivoCapturado.size < this.MAXIMO_TAMANIO_BYTES){
+      this.extraerBase64(archivoCapturado).then((imagen: any ) => {
+        this.previsualizacion = imagen.base;
+        this.producto.imagen= imagen.blob.name;
+        console.log(imagen);
+      })
+      this.archivos.push(archivoCapturado);
+      //console.log(event.target.files)
+    }else{
+      alert('Archivo maximo de carga son 1MB')
+    }
+      
   }
 
   extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
