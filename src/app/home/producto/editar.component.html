@@ -1,0 +1,41 @@
+<div class="container">
+    <h2>Actualizar productos</h2>
+    <form (ngSubmit)="editarDatos()">
+      <div>
+        <label for="codigo">Codigo</label>
+        <input type="text" id="codigo" name="codigo" [(ngModel)]="producto.codigo" required>
+      </div><br>
+      <div>
+        <label for="tipo">Tipo</label>
+        <input type="text" id="tipo" name="tipo" [(ngModel)]="producto.tipo" required>
+      </div><br>
+      <div>
+        <label for="color">Color</label>
+        <input type="text" id="color" name="color" [(ngModel)]="producto.color" required>
+      </div><br>
+      <div>
+        <label for="marca">Marca</label>
+        <input type="text" id="marca" name="marca" [(ngModel)]="producto.marca" required>
+      </div><br>
+      <div>
+        <label for="precio">Precio</label>
+        <input type="text" id="precio" name="precio" [(ngModel)]="producto.precio" required>
+      </div><br>
+      <div>
+        <label for="imagen">Imagen</label>
+        <input type="text" id="precio" name="imagen" [(ngModel)]="producto.imagen" disabled>
+      </div><br>
+      <div>
+        <label for="imagen"></label>
+        <input type="file" id="imagen" (change)="capturarFile($event)" required>
+      </div><br>
+      <!-- ========== Preview Imagen ========== -->
+      <div *ngIf="previsualizacion" class="d-flex">
+        <img width="150px" [src]="previsualizacion" alt="imagen">
+      </div><br>
+      <!-- ========== End Section ========== -->
+        <button class="btn btn-success">Actualizar</button>
+    </form><br>
+    <button class="btn btn-warning" (click)="reset()">Reset</button>
+  </div>
+  

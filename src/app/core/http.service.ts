@@ -24,4 +24,8 @@ export class HttpService {
     return this.http.post(HttpService.URI + endpoint, file);
   }
 
+  put(endpoint: string, body: object): Observable<any> {
+    return this.http.put(HttpService.URI + endpoint, body)
+  }
+
 }

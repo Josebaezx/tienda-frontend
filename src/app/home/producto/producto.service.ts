@@ -11,11 +11,17 @@ export class ProductoService {
 
   private static PRODUCTOS = '/productos';
   private static UPLOAD = '/productos/upload';
+  private static UPDATE = '/productos/update';
+  private static DETALLE = '/productos/producto/';
 
   constructor(private httpService: HttpService) { }
 
   searchAll(): Observable<Producto[]> {
     return this.httpService.get(ProductoService.PRODUCTOS);
+  }
+
+  detalle(id: number): Observable<Producto> {
+    return this.httpService.get(ProductoService.DETALLE+id);
   }
 
   saveProduct(body: ProductoDto): Observable<any>{
@@ -25,6 +31,12 @@ export class ProductoService {
   saveFile(file: any): Observable<any>{
     return this.httpService.postFile(ProductoService.UPLOAD, file);
   }
+
+  update(id: number, body: Producto): Observable<any>{
+    return this.httpService.put(`${ProductoService.UPDATE}/${id}`, body)
+  }
+
+
 
 
 

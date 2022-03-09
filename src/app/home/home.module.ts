@@ -8,6 +8,7 @@ import { ProductoComponent } from './producto/producto.component';
 import { ProductoService } from './producto/producto.service';
 import { GuardarComponent } from './producto/guardar.component';
 import { FormsModule } from '@angular/forms';
+import { EditarComponent } from './producto/editar.component';
 
 
 
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     AdviserComponent,
     ProductoComponent,
     GuardarComponent,
+    EditarComponent,
   ],
   imports: [
     CommonModule,
