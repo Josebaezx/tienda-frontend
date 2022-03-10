@@ -28,4 +28,8 @@ export class HttpService {
     return this.http.put(HttpService.URI + endpoint, body)
   }
 
+  delete(endpoint: string, id: any): Observable<any> {
+    return this.http.delete(HttpService.URI + endpoint, id)
+  }
+
 }

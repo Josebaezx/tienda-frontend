@@ -51,7 +51,6 @@ export class EditarComponent implements OnInit {
     )
   }
 
-  
   capturarFile(event: any): any {
     const archivoCapturado = event.target.files[0];
     if(archivoCapturado.size < GuardarComponent.MAXIMO_TAMANIO_BYTES){
@@ -112,6 +111,18 @@ export class EditarComponent implements OnInit {
 
   reset():void{
     window.location.reload();
+  }
+
+  delete(): void{
+    const id= Number(this.activateRoute.snapshot.params['id']);
+    if (window.confirm("Va eliminar un producto?")) {
+      this.productoservice.delete(id).subscribe(
+        () => {
+          console.log('Eliminado correctamente! id='+ id)
+          this.router.navigate(['']);
+        }
+      )
+    }
   }
   
 }

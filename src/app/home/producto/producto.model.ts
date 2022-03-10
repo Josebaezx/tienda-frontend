@@ -1,5 +1,5 @@
 export interface Producto {
-    id?: number;
+    id: number;
     codigo: string;
     color: string;
     fechaCreacion?: Date;

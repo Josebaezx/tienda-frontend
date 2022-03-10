@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Actualizar productos</h2>
-    <form (ngSubmit)="editarDatos()">
+    <form (ngSubmit)="f.valid && editarDatos()" #f="ngForm">
       <div>
         <label for="codigo">Codigo</label>
         <input type="text" id="codigo" name="codigo" [(ngModel)]="producto.codigo" required>
@@ -23,7 +23,7 @@
       </div><br>
       <div>
         <label for="imagen">Imagen</label>
-        <input type="text" id="precio" name="imagen" [(ngModel)]="producto.imagen" disabled>
+        <input type="text" id="precio" name="imagen" [(ngModel)]="producto.imagen" required disabled>
       </div><br>
       <div>
         <label for="imagen">*</label>
@@ -34,13 +34,17 @@
         <img width="150px" [src]="previsualizacion" alt="imagen">
       </div><br>
       <!-- ========== End Section ========== -->
-        <button class="btn btn-success">Actualizar</button>
+        <button class="btn btn-success" [disabled]="!f.valid">Actualizar</button>
     </form><br>
-    <button class="btn btn-warning" (click)="reset()">Reset</button>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+      <button type="button" class="btn btn-warning" (click)="reset()">Reset</button>
+      <button type="button" class="btn btn-danger" (click)="delete()">Eliminar</button>
+    </div>
   </div><br>
   <div class="container">
     <p>
       *Tamaño máximo de carga 1MB
     </p>
   </div>
+  
   

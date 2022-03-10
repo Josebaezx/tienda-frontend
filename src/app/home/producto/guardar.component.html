@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Registrar productos</h2>
-  <form (ngSubmit)="guardarDatos()">
+  <form (ngSubmit)=" f.valid && guardarDatos()" #f="ngForm">
     <div>
       <label for="codigo">Codigo</label>
       <input type="text" id="codigo" name="codigo" [(ngModel)]="codigo" required>
@@ -19,11 +19,11 @@
     </div><br>
     <div>
       <label for="precio">Precio</label>
-      <input type="text" id="precio" name="precio" [(ngModel)]="precio" required>
+      <input type="number" id="precio" name="precio" [(ngModel)]="precio" required>
     </div><br>
     <div>
       <label for="imagen">*</label>
-      <input type="file" id="imagen" (change)="capturarFile($event)" required>
+      <input type="file" id="imagen" name="imagen" [(ngModel)]="imagen" (change)="capturarFile($event)" required>
     </div><br>
     <!-- ========== Preview Imagen ========== -->
     <div *ngIf="previsualizacion" class="d-flex">
@@ -31,7 +31,7 @@
     </div><br>
     <!-- ========== End Section ========== -->
     <div>
-      <button class="btn btn-success">Enviar</button>
+      <button class="btn btn-success" [disabled]="!f.valid">Enviar</button>
     </div>
   </form>
 </div>

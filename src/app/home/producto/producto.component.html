@@ -12,7 +12,7 @@
           <div class="header">
               <h2>{{ producto.marca | slice: 0:15}}</h2>
             <h4 class="text-muted">{{ producto.tipo }}</h4>
-            <small class="text-muted">{{ producto.precio + ' Gs.'}}</small>
+            <small class="text-muted">{{ producto.precio | currency:'PRY': '₲ ':'1.0'}}</small>
           </div>
           <button routerLink="/home/editar/{{producto.id}}">Editar</button>
         </div>
