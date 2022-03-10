@@ -15,6 +15,7 @@ export class EditarComponent implements OnInit {
   producto!: Producto;
   archivos: any = [];
   previsualizacion?: string;
+  id!: number;
 
   constructor(
     private productoservice: ProductoService,
@@ -23,8 +24,8 @@ export class EditarComponent implements OnInit {
     private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    const id= this.activateRoute.snapshot.params['id'];
-    this.productoservice.detalle(id).subscribe(
+    this.id= this.activateRoute.snapshot.params['id'];
+    this.productoservice.detalle(this.id).subscribe(
       data => {
         this.producto = data;
       },
@@ -38,9 +39,7 @@ export class EditarComponent implements OnInit {
     if(this.previsualizacion != null){
       this.enviarImagen();
     }
-    
-    const id= this.activateRoute.snapshot.params['id'];
-    this.productoservice.update(id, this.producto).subscribe(
+    this.productoservice.update(this.id, this.producto).subscribe(
       data => {
         console.log(data);
         this.router.navigate(['']);
@@ -114,11 +113,10 @@ export class EditarComponent implements OnInit {
   }
 
   delete(): void{
-    const id= Number(this.activateRoute.snapshot.params['id']);
     if (window.confirm("Va eliminar un producto?")) {
-      this.productoservice.delete(id).subscribe(
+      this.productoservice.delete(this.id).subscribe(
         () => {
-          console.log('Eliminado correctamente! id='+ id)
+          console.log('Eliminado correctamente! id='+ this.id)
           this.router.navigate(['']);
         }
       )
