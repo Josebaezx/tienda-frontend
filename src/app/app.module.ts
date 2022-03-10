@@ -16,7 +16,7 @@ import { HomeModule } from './home/home.module';
     BrowserModule,
     CoreModule,
     BrowserAnimationsModule,
-    HomeModule // eager load
+    // HomeModule // eager load
     // ShopModule // eager load
   ],
   providers: [],

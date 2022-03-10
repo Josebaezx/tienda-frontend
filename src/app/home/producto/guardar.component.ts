@@ -18,6 +18,7 @@ export class GuardarComponent implements OnInit {
     imagen: string = '';
     archivos: any = [];
     previsualizacion?: string;
+    public static MAXIMO_TAMANIO_BYTES = 1048576
 
   constructor(
     private productoservice: ProductoService,
@@ -43,13 +44,18 @@ export class GuardarComponent implements OnInit {
 
   capturarFile(event: any): any {
     const archivoCapturado = event.target.files[0];
-    this.extraerBase64(archivoCapturado).then((imagen: any ) => {
-      this.previsualizacion = imagen.base;
-      this.imagen= imagen.blob.name;
-      console.log(imagen);
-    })
-    this.archivos.push(archivoCapturado);
-    //console.log(event.target.files)
+    if(archivoCapturado.size < GuardarComponent.MAXIMO_TAMANIO_BYTES){
+      this.extraerBase64(archivoCapturado).then((imagen: any ) => {
+        this.previsualizacion = imagen.base;
+        this.imagen= imagen.blob.name;
+        console.log(imagen);
+      })
+      this.archivos.push(archivoCapturado);
+      //console.log(event.target.files)
+    }else{
+      alert('Archivo maximo de carga son 1MB')
+    }
+   
   }
 
   extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {

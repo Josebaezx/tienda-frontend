@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GuardarComponent } from './guardar.component';
 import { Producto } from './producto.model';
 import { ProductoService } from './producto.service';
 
@@ -14,7 +15,6 @@ export class EditarComponent implements OnInit {
   producto!: Producto;
   archivos: any = [];
   previsualizacion?: string;
-  MAXIMO_TAMANIO_BYTES = 1000000
 
   constructor(
     private productoservice: ProductoService,
@@ -54,7 +54,7 @@ export class EditarComponent implements OnInit {
   
   capturarFile(event: any): any {
     const archivoCapturado = event.target.files[0];
-    if(archivoCapturado.size < this.MAXIMO_TAMANIO_BYTES){
+    if(archivoCapturado.size < GuardarComponent.MAXIMO_TAMANIO_BYTES){
       this.extraerBase64(archivoCapturado).then((imagen: any ) => {
         this.previsualizacion = imagen.base;
         this.producto.imagen= imagen.blob.name;

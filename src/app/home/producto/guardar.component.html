@@ -22,7 +22,7 @@
       <input type="text" id="precio" name="precio" [(ngModel)]="precio" required>
     </div><br>
     <div>
-      <label for="imagen"></label>
+      <label for="imagen">*</label>
       <input type="file" id="imagen" (change)="capturarFile($event)" required>
     </div><br>
     <!-- ========== Preview Imagen ========== -->
@@ -34,5 +34,9 @@
       <button class="btn btn-success">Enviar</button>
     </div>
   </form>
-
+</div>
+<div class="container">
+  <p>
+    *Tamaño máximo de carga 1MB
+  </p>
 </div>
