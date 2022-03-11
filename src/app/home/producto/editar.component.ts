@@ -16,7 +16,8 @@ export class EditarComponent implements OnInit {
   previsualizacion?: string;
   id!: number;
   messageError!: string;
-  
+  imagenApi: string ='http://localhost:8080/api/v1/productos/';
+
   constructor(
     private productoservice: ProductoService,
     private activateRoute: ActivatedRoute,
@@ -28,11 +29,13 @@ export class EditarComponent implements OnInit {
     this.productoservice.detalle(this.id).subscribe(
       data => {
         this.producto = data;
+        this.imagenApi+= data.imagen;
       },
       error => {
         console.log(error.error.mensaje)
       }
     )
+    
   }
   
   editarDatos(){

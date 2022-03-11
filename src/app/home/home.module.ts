@@ -9,7 +9,8 @@ import { ProductoService } from './producto/producto.service';
 import { GuardarComponent } from './producto/guardar.component';
 import { FormsModule } from '@angular/forms';
 import { EditarComponent } from './producto/editar.component';
-
+import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -24,7 +25,9 @@ import { EditarComponent } from './producto/editar.component';
     CommonModule,
     FormsModule,
     HomeRoutingModule,
-    SharedModule
+    SharedModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [
     ProductoService

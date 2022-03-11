@@ -1,45 +1,74 @@
 <div class="container">
-  <h2>Actualizar productos</h2>
-  <form (ngSubmit)="f.valid && editarDatos()" #f="ngForm">
-    <div>
-      <label for="codigo">Codigo</label>
-      <input type="text" id="codigo" name="codigo" [(ngModel)]="producto.codigo" required>
-    </div><br>
-    <div>
-      <label for="tipo">Tipo</label>
-      <input type="text" id="tipo" name="tipo" [(ngModel)]="producto.tipo" required>
-    </div><br>
-    <div>
-      <label for="color">Color</label>
-      <input type="text" id="color" name="color" [(ngModel)]="producto.color" required>
-    </div><br>
-    <div>
-      <label for="marca">Marca</label>
-      <input type="text" id="marca" name="marca" [(ngModel)]="producto.marca" required>
-    </div><br>
-    <div>
-      <label for="precio">Precio</label>
-      <input type="text" id="precio" name="precio" [(ngModel)]="producto.precio" required>
-    </div><br>
-    <!-- ========== Preview Imagen ========== -->
-    <div *ngIf="!previsualizacion">
-      <img width="250px" [src]="producto.imagen" alt="op">
+  <form class="example-form" #f="ngForm"><br>
+    <h2>Actualizacion de productos</h2>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Codigo</mat-label>
+            <input name="codigo" matInput [(ngModel)]="producto.codigo" required>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Tipo</mat-label>
+            <input matInput name="tipo" matInput [(ngModel)]="producto.tipo" required>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Color</mat-label>
+            <input matInput name="color" matInput [(ngModel)]="producto.color" required>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Marca</mat-label>
+            <input matInput name="marca" matInput [(ngModel)]="producto.marca" required>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Precio</mat-label>
+            <input matInput name="precio" matInput [(ngModel)]="producto.precio" required>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+     <!-- ========== Preview Imagen ========== -->
+     <div *ngIf="!previsualizacion">
+      <img width="292px" [src]="imagenApi" alt="op">
     </div><br>
     <div *ngIf="previsualizacion" class="d-flex">
-      <img width="250px" [src]="previsualizacion" alt="imagen">
+      <img width="292px" [src]="previsualizacion" alt="imagen">
     </div><br>
     <!-- ========== End Section ========== -->
     <div>
       <label for="imagen">*</label>
       <input type="file" id="imagen" (change)="capturarFile($event)" required>
     </div><br>
-    <button class="btn btn-success" [disabled]="!f.valid">Actualizar</button>
-  </form><br>
-  <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-    <button type="button" class="btn btn-warning" (click)="reset()">Reset</button>
-    <button type="button" class="btn btn-danger" (click)="delete()">Eliminar</button>
-  </div>
-</div><br>
+  </form>
+
+  <section>
+    <div class="example-button-row">
+      <button mat-raised-button color="accent" (click)="reset()">Reset</button>
+    </div>
+  </section>
+  <section>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary" (click)="f.valid && editarDatos()">Actualizar</button>
+      <button mat-raised-button color="warn" (click)="delete()">Eliminar</button>
+    </div>
+  </section>
+</div><br><br>
 
 <div class="container">
   <p>

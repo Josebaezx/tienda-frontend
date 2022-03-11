@@ -13,7 +13,7 @@ export class GuardarComponent implements OnInit {
     codigo: string = '';
     color: string = '';
     marca: string = '';
-    precio: number = 0;
+    precio!: number;
     tipo: string = '';
     imagen: string = '';
     archivos: any = [];
