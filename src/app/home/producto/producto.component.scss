@@ -14,13 +14,26 @@ html{
     max-width: 529px;
     white-space: nowrap;
     overflow: hidden;
+    text-align: center;
     transition: all 0.2 ease-in-out;
+    &:hover {
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.24);
+      cursor: pointer;
+    }
+    img {
+      opacity: 0.9;
+      width: 100%;
+      transition: opacity 0.9;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  
+    .card-inner {
+      padding: 10px;
+    }
   }
   
-  .card-inner {
-    padding: 10px;
-    text-align: center;
-  }
   .no-hidden{
     position: fixed;
     bottom: 10px;
@@ -29,8 +42,10 @@ html{
   }
   
   @media(max-width:570px){
-    
-  }/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+    .card{
+      img{
+        opacity: 1;
+      }
+    }
+  }
+  

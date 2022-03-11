@@ -7,7 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-guardar',
   templateUrl: './guardar.component.html',
-  styleUrls: ['./guardar.component.css']
+  styleUrls: ['./guardar.component.scss']
 })
 export class GuardarComponent implements OnInit {
     codigo: string = '';
