@@ -21,9 +21,8 @@
         <label for="precio">Precio</label>
         <input type="text" id="precio" name="precio" [(ngModel)]="producto.precio" required>
       </div><br>
-      <div>
-        <label for="imagen">Imagen</label>
-        <input type="text" id="precio" name="imagen" [(ngModel)]="producto.imagen" required disabled>
+      <div *ngIf="!previsualizacion">
+          <img width="250px" [src]="imagenApi" alt="op">
       </div><br>
       <div>
         <label for="imagen">*</label>
@@ -31,7 +30,7 @@
       </div><br>
       <!-- ========== Preview Imagen ========== -->
       <div *ngIf="previsualizacion" class="d-flex">
-        <img width="150px" [src]="previsualizacion" alt="imagen">
+        <img width="250px" [src]="previsualizacion" alt="imagen">
       </div><br>
       <!-- ========== End Section ========== -->
         <button class="btn btn-success" [disabled]="!f.valid">Actualizar</button>
@@ -41,6 +40,7 @@
       <button type="button" class="btn btn-danger" (click)="delete()">Eliminar</button>
     </div>
   </div><br>
+  
   <div class="container">
     <p>
       *Tamaño máximo de carga 1MB

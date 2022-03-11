@@ -15,6 +15,7 @@ export class EditarComponent implements OnInit {
   archivos: any = [];
   previsualizacion?: string;
   id!: number;
+  imagenApi: string = 'http://localhost:8080/api/v1/productos/';
   messageError!: string;
   
   constructor(
@@ -28,6 +29,7 @@ export class EditarComponent implements OnInit {
     this.productoservice.detalle(this.id).subscribe(
       data => {
         this.producto = data;
+        this.imagenApi+= data.imagen;
       },
       error => {
         console.log(error.error.mensaje)
