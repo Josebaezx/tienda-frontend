@@ -10,6 +10,7 @@ import { Producto } from '../home/producto/producto.model';
 export class HttpService {
   static URI = 'http://localhost:8080/api/v1';
   producto!: Producto;
+  
   constructor(private http: HttpClient) { }
 
   get(endpoint: string): Observable<any>{

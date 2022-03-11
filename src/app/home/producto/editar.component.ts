@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GuardarComponent } from './guardar.component';
-import { Producto } from './producto.model';
 import { ProductoService } from './producto.service';
 
 @Component({
@@ -12,11 +11,12 @@ import { ProductoService } from './producto.service';
 })
 export class EditarComponent implements OnInit {
 
-  producto!: Producto;
+  producto: any= [];
   archivos: any = [];
   previsualizacion?: string;
   id!: number;
-
+  messageError!: string;
+  
   constructor(
     private productoservice: ProductoService,
     private activateRoute: ActivatedRoute,
@@ -30,7 +30,7 @@ export class EditarComponent implements OnInit {
         this.producto = data;
       },
       error => {
-        console.log(error)
+        console.log(error.error.mensaje)
       }
     )
   }
@@ -45,7 +45,7 @@ export class EditarComponent implements OnInit {
         this.router.navigate(['']);
       },
       error => {
-        console.log(error)
+        console.log(error.error.mensaje)
       }
     )
   }
@@ -100,7 +100,7 @@ export class EditarComponent implements OnInit {
           //this.router.navigate(['']);
         },
         error => {
-          console.log(error)
+          console.log(error.error.mensaje)
         }
       );
     } catch (error) {
@@ -118,8 +118,11 @@ export class EditarComponent implements OnInit {
         () => {
           console.log('Eliminado correctamente! id='+ this.id)
           this.router.navigate(['']);
+        },
+        error => {
+          console.log(error.error.mensaje)
         }
-      )
+      );
     }
   }
   

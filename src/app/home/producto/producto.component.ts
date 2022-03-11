@@ -20,11 +20,13 @@ export class ProductoComponent implements OnInit {
   
   cargarProductos(): void{
     this.productoservice.searchAll().subscribe(
-      data => {
-        this.productos = data;
-      },
-      error => {
-        console.log(error);
+      {
+        next: data => {
+          this.productos = data;
+        },
+        error: error => {
+          console.log(error);
+        }
       }
     );
   }
