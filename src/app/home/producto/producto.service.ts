@@ -9,11 +9,11 @@ import { ProductoDto } from './productoDto';
 })
 export class ProductoService {
 
-  private static PRODUCTOS = '/productos';
-  private static UPLOAD = '/productos/upload';
-  private static UPDATE = '/productos/update';
-  private static DETALLE = '/productos/producto';
-  private static DELETE = '/productos/delete';
+  public static PRODUCTOS = '/productos';
+  public static UPLOAD = '/productos/upload';
+  public static UPDATE = '/productos/update';
+  public static DETALLE = '/productos/producto';
+  public static DELETE = '/productos/delete';
 
   constructor(private httpService: HttpService) { }
 

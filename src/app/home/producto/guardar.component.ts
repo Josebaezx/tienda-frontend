@@ -10,12 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./guardar.component.scss']
 })
 export class GuardarComponent implements OnInit {
-    codigo: string = '';
-    color: string = '';
-    marca: string = '';
-    precio!: number;
-    tipo: string = '';
-    imagen: string = '';
+    producto: any =[] ;
     archivos: any = [];
     previsualizacion?: string;
     public static MAXIMO_TAMANIO_BYTES = 1048576
@@ -30,8 +25,7 @@ export class GuardarComponent implements OnInit {
 
   guardarDatos(): void{
     this.enviarImagen();
-    const producto = new ProductoDto(this.codigo,this.color,this.marca,this.precio,this.tipo,this.imagen);
-    this.productoservice.saveProduct(producto).subscribe(
+    this.productoservice.saveProduct(this.producto).subscribe(
       () => {
         console.log('Producto enviado');
         this.router.navigate(['']);
@@ -47,7 +41,7 @@ export class GuardarComponent implements OnInit {
     if(archivoCapturado.size < GuardarComponent.MAXIMO_TAMANIO_BYTES){
       this.extraerBase64(archivoCapturado).then((imagen: any ) => {
         this.previsualizacion = imagen.base;
-        this.imagen= imagen.blob.name;
+        this.producto.imagen= imagen.blob.name;
         console.log(imagen);
       })
       this.archivos.push(archivoCapturado);

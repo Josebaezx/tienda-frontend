@@ -1,12 +1,13 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+import pkg from '../../package.json';
 
 export const environment = {
   production: false,
-  /*NAME: 'tienda-frontend',
-  VERSION: 0.1,
-  REST_API: 'http://localhost:8080/api/v1'*/
+  NAME: pkg.name,
+  VERSION: pkg.version,
+  REST_API: 'http://localhost:8080/api/v1'
 };
 
 /*

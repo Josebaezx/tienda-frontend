@@ -6,7 +6,7 @@
         <td>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Codigo</mat-label>
-            <input name="codigo" matInput [(ngModel)]="codigo" required>
+            <input name="codigo" matInput [(ngModel)]="producto.codigo" required>
           </mat-form-field>
         </td>
       </tr>
@@ -14,7 +14,7 @@
         <td>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Tipo</mat-label>
-            <input matInput name="tipo" matInput [(ngModel)]="tipo" required>
+            <input matInput name="tipo" matInput [(ngModel)]="producto.tipo" required>
           </mat-form-field>
         </td>
       </tr>
@@ -22,7 +22,7 @@
         <td>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Color</mat-label>
-            <input matInput name="color" matInput [(ngModel)]="color" required>
+            <input matInput name="color" matInput [(ngModel)]="producto.color" required>
           </mat-form-field>
         </td>
       </tr>
@@ -30,7 +30,7 @@
         <td>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Marca</mat-label>
-            <input matInput name="marca" matInput [(ngModel)]="marca" required>
+            <input matInput name="marca" matInput [(ngModel)]="producto.marca" required>
           </mat-form-field>
         </td>
       </tr>
@@ -38,7 +38,7 @@
         <td>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Precio</mat-label>
-            <input matInput name="precio" matInput [(ngModel)]="precio" required>
+            <input matInput name="precio" matInput [(ngModel)]="producto.precio" required>
           </mat-form-field>
         </td>
       </tr>
@@ -54,7 +54,7 @@
     </div><br>
     <section>
       <div class="example-button-row">
-        <button mat-raised-button color="primary">Guardar</button>
+        <button mat-raised-button color="primary" [disabled]="!f.valid">Guardar</button>
       </div>
     </section>
   </form>

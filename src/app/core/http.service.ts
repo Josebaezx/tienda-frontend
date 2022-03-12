@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Producto } from '../home/producto/producto.model';
+import {environment} from '@env';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
-  static URI = 'http://localhost:8080/api/v1';
-  producto!: Producto;
+  
+  static URI = environment.REST_API;
   
   constructor(private http: HttpClient) { }
 

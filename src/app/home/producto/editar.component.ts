@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GuardarComponent } from './guardar.component';
 import { ProductoService } from './producto.service';
+import {environment} from '@env';
 
 @Component({
   selector: 'app-editar',
@@ -15,8 +16,6 @@ export class EditarComponent implements OnInit {
   archivos: any = [];
   previsualizacion?: string;
   id!: number;
-  messageError!: string;
-  imagenApi: string ='http://localhost:8080/api/v1/productos/';
 
   constructor(
     private productoservice: ProductoService,
@@ -29,7 +28,7 @@ export class EditarComponent implements OnInit {
     this.productoservice.detalle(this.id).subscribe(
       data => {
         this.producto = data;
-        this.imagenApi+= data.imagen;
+        this.producto.imagen= `${environment.REST_API}${ProductoService.PRODUCTOS}/${data.imagen}`;
       },
       error => {
         console.log(error.error.mensaje)
