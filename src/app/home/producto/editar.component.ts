@@ -16,6 +16,7 @@ export class EditarComponent implements OnInit {
   archivos: any = [];
   previsualizacion?: string;
   id!: number;
+  imagenApi: any;
 
   constructor(
     private productoservice: ProductoService,
@@ -28,7 +29,7 @@ export class EditarComponent implements OnInit {
     this.productoservice.detalle(this.id).subscribe(
       data => {
         this.producto = data;
-        this.producto.imagen= `${environment.REST_API}${ProductoService.PRODUCTOS}/${data.imagen}`;
+        this.imagenApi= `${environment.REST_API}${ProductoService.PRODUCTOS}/${data.imagen}`;
       },
       error => {
         console.log(error.error.mensaje)
@@ -54,16 +55,25 @@ export class EditarComponent implements OnInit {
 
   capturarFile(event: any): any {
     const archivoCapturado = event.target.files[0];
-    if(archivoCapturado.size < GuardarComponent.MAXIMO_TAMANIO_BYTES){
-      this.extraerBase64(archivoCapturado).then((imagen: any ) => {
-        this.previsualizacion = imagen.base;
-        this.producto.imagen= imagen.blob.name;
-        console.log(imagen);
-      })
-      this.archivos.push(archivoCapturado);
-      //console.log(event.target.files)
+    let siHayEvent = archivoCapturado != null ? true : false;
+    console.log('HOLAAAAAAAAAAAAAAA')
+    if(siHayEvent){
+      if(archivoCapturado.size < GuardarComponent.MAXIMO_TAMANIO_BYTES){
+        this.extraerBase64(archivoCapturado).then((imagen: any ) => {
+          this.previsualizacion = imagen.base;
+          this.producto.imagen= imagen.blob.name;
+          console.log(imagen);
+        })
+        this.archivos.push(archivoCapturado);
+        //console.log(event.target.files)
+      }else{
+        alert('Archivo maximo de carga son 1MB')
+      }
+      
     }else{
-      alert('Archivo maximo de carga son 1MB')
+      this.previsualizacion='';
+      this.imagenApi=null;
+      this.producto.imagen=null;
     }
       
   }

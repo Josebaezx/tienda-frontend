@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoDto } from './productoDto';
 import { ProductoService } from './producto.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -24,12 +23,12 @@ export class GuardarComponent implements OnInit {
   }
 
   guardarDatos(): void{
-    this.enviarImagen();
+    this.enviarImagen()
     this.productoservice.saveProduct(this.producto).subscribe(
       () => {
         console.log('Producto enviado');
         this.router.navigate(['']);
-      },
+      }, 
       error => {
         console.log(error)
       }
@@ -38,18 +37,24 @@ export class GuardarComponent implements OnInit {
 
   capturarFile(event: any): any {
     const archivoCapturado = event.target.files[0];
-    if(archivoCapturado.size < GuardarComponent.MAXIMO_TAMANIO_BYTES){
-      this.extraerBase64(archivoCapturado).then((imagen: any ) => {
-        this.previsualizacion = imagen.base;
-        this.producto.imagen= imagen.blob.name;
-        console.log(imagen);
-      })
-      this.archivos.push(archivoCapturado);
-      //console.log(event.target.files)
+    let siHayEvento = archivoCapturado != null ? true : false;
+    if(siHayEvento){
+      if(archivoCapturado.size < GuardarComponent.MAXIMO_TAMANIO_BYTES){
+        this.extraerBase64(archivoCapturado).then((imagen: any ) => {
+          this.previsualizacion = imagen.base;
+          this.producto.imagen= imagen.blob.name;
+          console.log(imagen);
+        })
+        this.archivos.push(archivoCapturado);
+        //console.log(event.target.files)
+      }else{
+        alert('Supera el nivel de carga, limite 1MB')
+      }
     }else{
-      alert('Archivo maximo de carga son 1MB')
+      this.previsualizacion='';
+      this.producto.imagen=null;
     }
-   
+    
   }
 
   extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {

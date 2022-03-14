@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="example-form" (ngSubmit)=" f.valid && guardarDatos()" #f="ngForm"><br>
+  <form class="example-form" (ngSubmit)="guardarDatos()" #f="ngForm"><br>
     <h2>Registrar productos</h2>
     <table class="example-full-width" cellspacing="0">
       <tr>
@@ -52,9 +52,14 @@
       <label for="imagen">*</label>
       <input type="file" id="imagen" (change)="capturarFile($event)" required>
     </div><br>
-    <section>
+    <section *ngIf="!f.valid || producto.imagen == null">
       <div class="example-button-row">
-        <button mat-raised-button color="primary" [disabled]="!f.valid">Guardar</button>
+        <button mat-raised-button color="basic" >Guardar</button>
+      </div>
+    </section>
+    <section *ngIf="f.valid && producto.imagen != null">
+      <div class="example-button-row">
+        <button mat-raised-button color="primary">Guardar</button>
       </div>
     </section>
   </form>

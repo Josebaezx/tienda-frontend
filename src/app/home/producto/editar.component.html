@@ -45,7 +45,7 @@
     </table>
      <!-- ========== Preview Imagen ========== -->
      <div *ngIf="!previsualizacion">
-      <img width="292px" [src]="producto.imagen" alt="op">
+      <img width="292px" [src]="imagenApi" alt="Selecciona una imagen">
     </div><br>
     <div *ngIf="previsualizacion" class="d-flex">
       <img width="292px" [src]="previsualizacion" alt="imagen">
@@ -64,7 +64,7 @@
   </section>
   <section>
     <div class="example-button-row">
-      <button mat-raised-button color="primary" (click)="f.valid && editarDatos()">Actualizar</button>
+      <button mat-raised-button color="primary" [disabled]="producto.imagen == null" (click)="f.valid && editarDatos()">Actualizar</button>
       <button mat-raised-button color="warn" (click)="delete()">Eliminar</button>
     </div>
   </section>
