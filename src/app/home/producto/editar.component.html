@@ -64,7 +64,7 @@
   </section>
   <section>
     <div class="example-button-row">
-      <button mat-raised-button color="primary" [disabled]="producto.imagen == null" (click)="f.valid && editarDatos()">Actualizar</button>
+      <button mat-raised-button color="primary" [disabled]="!f.valid || producto.imagen == null" (click)="editarDatos()">Actualizar</button>
       <button mat-raised-button color="warn" (click)="delete()">Eliminar</button>
     </div>
   </section>

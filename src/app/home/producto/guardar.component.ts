@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoService } from './producto.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ProductoDto } from './productoDto';
+import { Producto } from './producto.model';
 
 @Component({
   selector: 'app-guardar',
@@ -9,7 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./guardar.component.scss']
 })
 export class GuardarComponent implements OnInit {
-    producto: any =[] ;
+    producto: any= [];
     archivos: any = [];
     previsualizacion?: string;
     public static MAXIMO_TAMANIO_BYTES = 1048576
@@ -24,13 +26,20 @@ export class GuardarComponent implements OnInit {
 
   guardarDatos(): void{
     this.enviarImagen()
-    this.productoservice.saveProduct(this.producto).subscribe(
+    const producto = new ProductoDto(
+        this.producto.codigo,
+        this.producto.color,
+        this.producto.marca,
+        this.producto.precio,
+        this.producto.tipo,
+        this.producto.imagen);
+    this.productoservice.saveProduct(producto).subscribe(
       () => {
         console.log('Producto enviado');
         this.router.navigate(['']);
       }, 
-      error => {
-        console.log(error)
+      err => {
+        console.log(err.error)
       }
     );
   }

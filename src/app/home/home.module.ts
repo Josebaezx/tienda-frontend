@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { EditarComponent } from './producto/editar.component';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatPaginatorModule} from '@angular/material/paginator'; 
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import {MatButtonModule} from '@angular/material/button';
     HomeRoutingModule,
     SharedModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatPaginatorModule,
   ],
   providers: [
     ProductoService

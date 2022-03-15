@@ -56,7 +56,7 @@ export class EditarComponent implements OnInit {
   capturarFile(event: any): any {
     const archivoCapturado = event.target.files[0];
     let siHayEvent = archivoCapturado != null ? true : false;
-    console.log('HOLAAAAAAAAAAAAAAA')
+
     if(siHayEvent){
       if(archivoCapturado.size < GuardarComponent.MAXIMO_TAMANIO_BYTES){
         this.extraerBase64(archivoCapturado).then((imagen: any ) => {

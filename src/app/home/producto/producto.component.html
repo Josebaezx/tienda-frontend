@@ -2,15 +2,13 @@
     <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let producto of productos">
       <div class="card">
         <div class="image">
-            <a href="" routerLink="">
-              <img [src]="producto.imagen"
-              [alt]="producto.tipo"
-              class="card-img-top">
-            </a>
+          <a href="" routerLink="">
+            <img [src]="producto.imagen" [alt]="producto.tipo" class="card-img-top">
+          </a>
         </div>
         <div class="card-inner">
           <div class="header">
-              <h2>{{ producto.marca | slice: 0:15}}</h2>
+            <h2>{{ producto.marca | slice: 0:15}}</h2>
             <h4 class="text-muted">{{ producto.tipo }}</h4>
             <small class="text-muted">{{ producto.precio | currency:'PRY': '₲ ':'1.0'}}</small>
           </div>
@@ -18,12 +16,22 @@
         </div>
       </div>
     </div>
-    <div
-      class="col-xs-12 col-sm-12 col-md-12 mt-5 container-notFound"
-      *ngIf="productos.length <= 0"
-    >
-      <p>No results.......</p>
+    <div><br><br>
+      <!-- ========== Start Paginacion ========== -->
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a style="cursor: pointer;" class="page-link" (click)="rewind()">Previous</a>
+          </li>
+          <span *ngFor="let p of totalPages; let i = index">
+            <li class="page-item">
+              <a  style="cursor: pointer;" class="page-link" (click)="setPage(i)" [ngClass]="{'bg-dark text-white': i === page }">{{i+1}}</a>
+            </li>
+          </span>
+          <li class="page-item">
+            <a style="cursor: pointer;" class="page-link" (click)="next()">Next</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </div>
-
-  
+    <!-- ========== End Paginacion ========== -->

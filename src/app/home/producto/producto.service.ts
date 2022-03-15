@@ -21,6 +21,11 @@ export class ProductoService {
     return this.httpService.get(ProductoService.PRODUCTOS);
   }
 
+  searchAllPageable(page: number, size: number, order: string, desc: boolean): Observable<Producto[]> {
+    return this.httpService.get(ProductoService.PRODUCTOS+`?page=${page}&size=${size}&order=${order}&desc=${desc}`);
+  }
+  
+
   detalle(id: number): Observable<Producto> {
     return this.httpService.get(`${ProductoService.DETALLE}/${id}`);
   }
