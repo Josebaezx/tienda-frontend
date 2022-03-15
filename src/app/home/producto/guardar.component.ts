@@ -11,7 +11,14 @@ import { Producto } from './producto.model';
   styleUrls: ['./guardar.component.scss']
 })
 export class GuardarComponent implements OnInit {
-    producto: any= [];
+    producto: ProductoDto = {
+      codigo: '',
+      color: '',
+      marca: '',
+      precio: null,
+      tipo: '',
+      imagen: '',
+    }
     archivos: any = [];
     previsualizacion?: string;
     public static MAXIMO_TAMANIO_BYTES = 1048576
@@ -26,14 +33,7 @@ export class GuardarComponent implements OnInit {
 
   guardarDatos(): void{
     this.enviarImagen()
-    const producto = new ProductoDto(
-        this.producto.codigo,
-        this.producto.color,
-        this.producto.marca,
-        this.producto.precio,
-        this.producto.tipo,
-        this.producto.imagen);
-    this.productoservice.saveProduct(producto).subscribe(
+    this.productoservice.saveProduct(this.producto).subscribe(
       () => {
         console.log('Producto enviado');
         this.router.navigate(['']);

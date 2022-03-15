@@ -34,7 +34,7 @@ export class ProductoComponent implements OnInit {
           console.log(data);
         },
         error: err => {
-          console.log(err.error);
+          console.log(err.error.mensaje);
         }
       }
     );
@@ -51,7 +51,7 @@ export class ProductoComponent implements OnInit {
           console.log(data);
         },
         error: err => {
-          console.log(err.error);
+          console.log(err.error.mensaje);
         }
       }
     );
