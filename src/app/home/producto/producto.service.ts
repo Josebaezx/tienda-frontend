@@ -11,6 +11,7 @@ export class ProductoService {
 
   public static PRODUCTOS = '/productos';
   public static UPLOAD = '/productos/upload';
+  public static PAGEABLE = '/productos/pageable';
   public static UPDATE = '/productos/update';
   public static DETALLE = '/productos/producto';
   public static DELETE = '/productos/delete';
@@ -22,7 +23,7 @@ export class ProductoService {
   }
 
   searchAllPageable(page: number, size: number, order: string, desc: boolean): Observable<Producto[]> {
-    return this.httpService.get(ProductoService.PRODUCTOS+`?page=${page}&size=${size}&order=${order}&desc=${desc}`);
+    return this.httpService.get(ProductoService.PAGEABLE+`?page=${page}&size=${size}&order=${order}&desc=${desc}`);
   }
   
 
