@@ -5,6 +5,7 @@ import { ProductoComponent } from './producto/producto.component';
 import { AdviserComponent } from './adviser/adviser.component';
 import { GuardarComponent } from './producto/guardar.component';
 import { EditarComponent } from './producto/editar.component';
+import { CarritoComponent } from './producto/carrito.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent,
@@ -12,6 +13,7 @@ const routes: Routes = [
       {path: 'adviser' , component: AdviserComponent},
       {path: 'agregar', component: GuardarComponent},
       {path: 'bienvenido', component: ProductoComponent},
+      {path: 'carrito', component: CarritoComponent},
       {path: 'editar/:id', component: EditarComponent}
   ]},
 ];

@@ -14,9 +14,18 @@
           </div>
           <button routerLink="/home/editar/{{producto.id}}">Editar</button>
         </div>
+        <div>
+          <section>
+            <div class="example-label"></div>
+            <div class="example-button-row">
+              <button mat-raised-button color="primary" (click)="agregarCarrito(producto.id)">Agregar al carrito</button>
+              <button mat-raised-button color="warn" (click)="carrito()">Comprar ahora</button>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
-    <div><br><br>
+  <div><br><br>
       <!-- ========== Start Paginacion ========== -->
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">

@@ -1,4 +1,5 @@
 export interface Producto {
+    [x: string]: any;
     id: number;
     codigo: string;
     color: string;

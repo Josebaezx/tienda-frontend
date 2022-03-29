@@ -11,7 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { EditarComponent } from './producto/editar.component';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import {MatPaginatorModule} from '@angular/material/paginator'; 
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { CarritoComponent } from './producto/carrito.component'; 
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ProductoComponent,
     GuardarComponent,
     EditarComponent,
+    CarritoComponent,
   ],
   imports: [
     CommonModule,

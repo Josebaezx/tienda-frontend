@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpService } from '../../core/http.service';
+import { Detalle } from './detalle';
 import { Producto } from './producto.model';
 import { ProductoDto } from './productoDto';
 
@@ -13,8 +14,13 @@ export class ProductoService {
   public static UPLOAD = '/productos/upload';
   public static PAGEABLE = '/productos/pageable';
   public static UPDATE = '/productos/update';
-  public static DETALLE = '/productos/producto';
+  public static DETALLE = '/productos/detail';
   public static DELETE = '/productos/delete';
+
+  detalles: Detalle= {
+    id: null,
+    productos: []
+  };
 
   constructor(private httpService: HttpService) { }
 
@@ -23,7 +29,7 @@ export class ProductoService {
   }
 
   searchAllPageable(page: number, size: number, order: string, desc: boolean): Observable<Producto[]> {
-    return this.httpService.get(ProductoService.PAGEABLE+`?page=${page}&size=${size}&order=${order}&desc=${desc}`);
+    return this.httpService.get(ProductoService.PAGEABLE + `?page=${page}&size=${size}&order=${order}&desc=${desc}`);
   }
   
 
@@ -46,9 +52,5 @@ export class ProductoService {
   delete(id: number): Observable<Producto> {
     return this.httpService.delete(`${ProductoService.DELETE}/${id}`, id);
   }
-
-
-
-
 
 }

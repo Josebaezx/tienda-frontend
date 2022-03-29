@@ -1,0 +1,27 @@
+<header>
+    <h1>Carrito</h1>
+    <hr>
+</header>
+<section class="contenedor" *ngFor="let producto of productos">
+    <div class="foto">
+        <img [src]="producto.imagen" [alt]="producto.tipo">
+    </div>
+    <div class="detalles">
+        <ul class="list-group">
+            <li>{{producto.tipo}}</li>
+            <li>{{producto.color}}</li>
+            <li>{{producto.marca}}</li>
+        </ul>
+    </div>
+    <div class="precio">
+        <span>{{producto.precio | currency:'PRY': '₲ ':'1.0'}}</span>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+</section>
+<div class="total">
+    <h3>
+        Total: {{total | currency:'PRY': '₲ ':'1.0'}}
+    </h3>
+</div>
