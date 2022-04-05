@@ -1,9 +1,14 @@
 <header>
     <h1>Carrito</h1>
     <hr>
+    <div *ngIf="(totalPrice$ |async) != 0">
+        <button class="btn btn-dark" (click)="clearEntries()">Remove all</button>
+    </div>
 </header>
-<section class="contenedor" *ngFor="let producto of productos">
+
+<section class="contenedor" *ngFor="let producto of (pros$ | async)">
     <div class="foto">
+        <span style="cursor: pointer;" (click)="remove(producto)"><i class="fa-solid fa-circle-xmark"></i></span>
         <img [src]="producto.imagen" [alt]="producto.tipo">
     </div>
     <div class="detalles">
@@ -22,6 +27,7 @@
 </section>
 <div class="total">
     <h3>
-        Total: {{total | currency:'PRY': '₲ ':'1.0'}}
+        Total: {{(totalPrice$ | async) | currency:'PRY': '₲ ':'1.0'}}
     </h3>
 </div>
+

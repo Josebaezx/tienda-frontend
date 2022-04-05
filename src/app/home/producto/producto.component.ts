@@ -2,6 +2,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProductoService } from './producto.service';
 import { Router } from '@angular/router';
 import { ProductoID } from './ProductoID';
+import { Store } from '@ngrx/store';
+import { addProducto } from '../../state/actions/cart.actions';
+import { Producto } from './producto.model';
 
 @Component({
   selector: 'app-producto',
@@ -18,11 +21,11 @@ export class ProductoComponent implements OnInit {
   desc = true;
   isFirst = false;
   isLast = false;
-  cantidadAdd: number=0;
 
   constructor(
     private productoservice: ProductoService,
-    private router: Router) { }
+    private router: Router,
+    private store: Store) { }
 
   ngOnInit(): void {
     this.cargarProductosPaginable();
@@ -89,11 +92,10 @@ export class ProductoComponent implements OnInit {
     this.cargarProductosPaginable();
   }
 
-  agregarCarrito(idx: number): void{
-    let prod = new ProductoID(idx);
-    this.productoservice.detalles.productos.push(prod);
-    this.cantidadAdd++;
-    console.log(this.productoservice.detalles.productos);
+  agregarCarrito(producto: Producto): void{
+   
+    this.store.dispatch(addProducto(producto));
+
   }
 
   carrito(): void{

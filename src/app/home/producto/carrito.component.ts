@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '@env';
 import { Producto } from './producto.model';
 import { ProductoService } from './producto.service';
+import { Observable } from 'rxjs';
+import { ProductoID } from './ProductoID';
+import { Store } from '@ngrx/store';
+import { selectProductos } from 'app/state/selectors/cart.selectors';
+import { selectTotalPrice } from '../../state/selectors/cart.selectors';
+import { clearCart, removeCart } from 'app/state/actions/cart.actions';
 
 @Component({
   selector: 'app-carrito',
@@ -9,30 +15,24 @@ import { ProductoService } from './producto.service';
   styleUrls: ['./carrito.component.scss']
 })
 export class CarritoComponent implements OnInit {
-  productos: Producto[]=[];
-  produc: Producto;
-  total: number= null;
-  
-  constructor(private productoservice: ProductoService) { }
+  totalPrice$: Observable<number>;
+  pros$: Observable<any>;
 
-  ngOnInit(): void {
-    console.log(this.productoservice.detalles.productos);
-    const pros = this.productoservice.detalles.productos;
+  constructor(
+    private productoservice: ProductoService,
+    private store: Store) { 
+    this.pros$ = store.select(selectProductos);
+    this.totalPrice$ = store.select(selectTotalPrice);
+  }
 
-    for(const item of pros){
-      this.productoservice.detalle(item.id).subscribe({
-        next: data => {
-          this.produc = data;
-          this.produc.imagen= `${environment.REST_API}${ProductoService.PRODUCTOS}/${data.imagen}`;
-          this.total += this.produc.precio;
-          this.productos.push(this.produc);
-        },
-        error: err =>{
-          console.log(err.error.mensaje)
-        }
-      });
-    }
-    
+  ngOnInit(): void { }
+
+  clearEntries () {
+    this.store.dispatch(clearCart());
+  }
+
+  remove(producto: ProductoID){
+    this.store.dispatch(removeCart(producto))
   }
 
 }
